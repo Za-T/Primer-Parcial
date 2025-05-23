@@ -3,10 +3,11 @@ from biblioteca import *
 def ordenar_vnt_anual (producto:list, venta:list):
 
     """ 
-        Parametros: ingresa la lista de productos y ventas.
+        Parametros:
+                producto (list): Lista de nombres/códigos de productos.
+                venta (list): Matriz con las ventas que corresponde a cada producto.
 
-        Funcion: Suma las ventas de cada prducto, 
-        y una vez conseguido el total,
+        Funcion: Suma las ventas de cada prducto, y una vez conseguido el total,
         ordena los productos de mayor a menor segun sus ventas totales.
     """
 

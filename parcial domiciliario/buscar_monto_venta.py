@@ -1,9 +1,11 @@
 from biblioteca import *
 
-def buscar_venta (producto:list, venta:list):
+def buscar_monto (producto:list, venta:list):
 
     """ 
-        Parametros: ingresa la lista de productos y ventas.
+        Parametros:
+                    producto (list): Lista de nombres/códigos de productos.
+                    venta (list): Matriz con las ventas que corresponde a cada producto.
 
         Funcion: Busca un valor de venta dentro de la matriz 
         y muestra en la tabla solo los valores que coinciden,

@@ -2,10 +2,12 @@
 def mostrar_tabla (producto:list, venta:list):
 
     """ 
-        Parametros: ingresa la lista de productos y ventas.
+        Parametros:
+                    producto (list): Lista de nombres/códigos de productos.
+                    venta (list): Matriz con las ventas que corresponde a cada producto.
 
-        Funcion: muestra la lista de productos y la matriz de ventas,
-        ordenados segun trimestre.
+        Funcion: Muestra la lista de productos y la matriz de ventas,
+                 ordenados segun trimestre.
     """
 
     print ("Producto # | T1 | T2 | T3 |")

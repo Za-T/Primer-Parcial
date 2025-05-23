@@ -32,7 +32,7 @@ while repetir == "s":
             buscar_prd_nombre (productos, ventas)
 
         case 4: 
-            buscar_venta (productos, ventas)
+            buscar_monto (productos, ventas)
 
         case 5:
             repetir = "n"
