@@ -1,6 +1,6 @@
 from biblioteca import *
 
-def buscar_monto_venta (producto:list, venta:list):
+def buscar_venta (producto:list, venta:list):
 
     """ 
         Parametros: ingresa la lista de productos y ventas.
