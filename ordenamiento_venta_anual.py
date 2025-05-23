@@ -1,6 +1,6 @@
 from biblioteca import *
 
-def ordenar_prd_vnt_anual (producto:list, venta:list):
+def ordenar_vnt_anual (producto:list, venta:list):
 
     """ 
         Parametros: ingresa la lista de productos y ventas.
