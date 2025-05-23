@@ -3,5 +3,8 @@ productos = ["A","B","C"]
 ventas = [
     [50,60,70],
     [70,55,45],
-    [50,65,75]
+    [80,95,75]
 ]
+
+productos_dup = productos [:]
+venta_dup = ventas [:]

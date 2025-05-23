@@ -1,4 +1,4 @@
-from datos import *
+
 from biblioteca import validar_str
 
 def buscar_prd_nombre (producto:list, venta:list):

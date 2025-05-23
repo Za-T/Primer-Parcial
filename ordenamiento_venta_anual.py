@@ -37,6 +37,8 @@ def ordenar_vnt_anual (producto:list, venta:list):
                 auxiliar_listas (ventas_ord, i, j)
                 auxiliar_listas (producto, i, j)
     
+    print (ventas_ord, producto)
+
     print ("Producto # | Total |")
     print ("--------------------------")
 

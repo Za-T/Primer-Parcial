@@ -26,7 +26,7 @@ while repetir == "s":
             mostrar_tabla (productos, ventas)
 
         case 2:
-            ordenar_vnt_anual (productos, ventas)
+            ordenar_vnt_anual (productos_dup, venta_dup)
 
         case 3:
             buscar_prd_nombre (productos, ventas)

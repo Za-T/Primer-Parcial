@@ -10,7 +10,7 @@ def buscar_venta (producto:list, venta:list):
         
     """
 
-    monto = validar_int ("monto", -1000, 1000)
+    monto = validar_int ("monto", 0, 1000)
 
     print ("Producto # | T1 | T2 | T3 |")
     print ("--------------------------")
