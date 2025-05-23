@@ -21,7 +21,7 @@ def validar_str (valor: str, op1: str, op2: str) -> str:
 
     return cadena
 
-def auxiliar_listas (lista:list,i,j):
+def auxiliar_listas (lista:list,i:int,j:int):
 
     """
         Parametro: 
@@ -30,7 +30,8 @@ def auxiliar_listas (lista:list,i,j):
                     j:segundo valor de iteracion
         
         Funcion: Es una funcion auxiliar para realizar la secuencia 
-        interior en un ordenamiento de lista.
+        interior en un ordenamiento de lista. Intercambia los elementos
+        en las posiciones i y j.
     """
 
     aux = lista [i]

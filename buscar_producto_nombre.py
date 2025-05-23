@@ -4,7 +4,9 @@ from biblioteca import validar_str
 def buscar_prd_nombre (producto:list, venta:list):
 
     """ 
-        Parametros: ingresa la lista de productos y ventas.
+        Parametros:
+                    producto (list): Lista de nombres/códigos de productos.
+                    venta (list): Matriz con las ventas que corresponde a cada producto.
 
         Funcion: Buscar un producto por nombre y mostrar sus ventas. 
         

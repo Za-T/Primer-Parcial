@@ -6,7 +6,8 @@ def buscar_venta (producto:list, venta:list):
         Parametros: ingresa la lista de productos y ventas.
 
         Funcion: Busca un valor de venta dentro de la matriz 
-        y muestra a qué producto y trimestre pertenece.
+        y muestra en la tabla solo los valores que coinciden,
+        los demas valores son representados con "--".
         
     """
 
