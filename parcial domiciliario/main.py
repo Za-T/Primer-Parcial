@@ -37,5 +37,6 @@ while repetir == "s":
         case 5:
             repetir = "n"
     
-    repetir = validar_str ("si quiere elegir otra opcion","s","n")
+    if seleccionar != 5:
+        repetir = validar_str ("si quiere elegir otra opcion","s","n")
 
