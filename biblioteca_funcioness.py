@@ -1,5 +1,4 @@
-
-
+import copy
 #----------------VALIDACIONES----------------
 
 def validar_int (valor: str, desde: int, hasta: int) -> int:
@@ -12,6 +11,12 @@ def validar_int (valor: str, desde: int, hasta: int) -> int:
     while entero < desde or entero > hasta:
         entero = int (input (f"Error, valor invalido. Ingrese un nuevo valor en este rango ({desde} - {hasta}): "))
 
+    return entero
+
+def solicitar_int (nombre_valor: str) -> int:
+
+    ''' Solicita al usuario el ingreso de un número entero y lo retorna'''
+    entero = int(input (f"{nombre_valor}: "))
     return entero
 
 def validar_str (valor: str, op1: str, op2: str, op3: str = None) -> str:
@@ -35,12 +40,12 @@ def solicitar_str (nombre_valor: str) -> str:
     cadena = str (input (f"Ingresar {nombre_valor}: "))
     return cadena
 
-#----------------VALIDACIONES----------------
+#---------------- MENU ----------------
 
-def crear_menu (lista_opciones:list, lista_fun:list, datos: list):
+def manejar_menu (lista_opciones:list, lista_fun:list, nombre:list, notas:list):
 
     primero = 0
-    ultimo = len(lista_opciones)
+    ultimo = len(lista_opciones)-1
     
     repetir = "s"
 
@@ -50,110 +55,142 @@ def crear_menu (lista_opciones:list, lista_fun:list, datos: list):
         
         for i in range(len(lista_opciones)):
             print (f"{i}. {lista_opciones[i]}")
-        print ("\n")
-
-        opcion = validar_int("opcion",primero,ultimo)
-
-        lista_fun [opcion](datos)
-
-        print ("\n")
-        repetir = validar_str ("si quiere solicitar otra opcion", "s", "n")
-
-#----------------VALIDACIONES----------------
-
-def mostrar_tabla (nombre:list, nota:list):
-
-    """ 
-        Parametros:
-                    producto (list): Lista de nombres/códigos de productos.
-                    venta (list): Matriz con las ventas que corresponde a cada producto.
-
-        Funcion: Muestra la lista de productos y la matriz de ventas,
-                 ordenados segun trimestre.
-    """
-
-    print ("Producto # | T1 | T2 | T3 |")
-    print ("--------------------------")
-
-    for i in range (len(nombre)):
-
-        print (f"Producto {nombre [i]} |", end = "")
-
-        for j in range (len(nota)):
-             print (f" {nota [i][j]} |", end = "")
         
-        print ("\n")
+        print (" ")
+        opcion = validar_int("opcion",primero,ultimo)
+        print (" ")
 
-#----------------VALIDACIONES----------------
+        lista_fun [opcion](nombre, notas)
 
-def promediar_notas (datos:list):
+        repetir = validar_str ("\nsi quiere solicitar otra opcion", "s", "n")
+    
+    print ("\nFin del programa.")
+    
+#---------------- Mostrar elemntos ----------------
 
-    #por cada elemento de la lista
-    for i in range (len(datos)):
+def mostrar_listas (nombres:list, calificaciones:list):
 
+    print ("Estudiantes y calificaciones:")
+
+    for i in range (len(nombres)):
+       print (f"{nombres [i]}: {calificaciones [i]}")
+
+#---------------- Ordenar promedio ----------------
+
+def promediar_notas (nombres, calificaciones) -> list:
+
+    lista_promedio = []
+
+    for i in range (len(nombres)):
+        
         suma_notas = 0
 
-        #por cada nota
-        for j in range (len(datos [i]["notas"])):
-            suma_notas += datos[i]["notas"][j]
+        for j in range (len(calificaciones [i])):
 
-        cant_notas = len(datos [i]["notas"])
+            suma_notas += calificaciones [i][j]
+            divisor = len(calificaciones [i])
 
-        promedio = suma_notas // cant_notas
+        promedio = suma_notas / divisor
 
-        datos [i]["promedio"] = promedio
-
-def ordenar_asc_lista_dic (lista:list,key:str)->list:
-
-    for i in range (len(lista)-1):
-
-        for j in range (i+1, len(lista)):
-
-            if lista [i][key] <  lista [j][key]:
-
-                aux = lista [i]
-                lista [i] = lista [j]
-                lista [j] = aux                
-
-    return lista
+        lista_promedio.append(promedio)
+    
+    return lista_promedio
 
 def auxiliar_listas (lista:list,i,j):
     aux = lista [i]
     lista [i] = lista [j]
     lista [j] = aux
 
-#----------------VALIDACIONES----------------
+def ordenar_lista_segun_promedio (nombres:list, calificaciones:list):
 
-def buscar_monto (producto:list, venta:list):
+    print ("Ordenando por promedio general...")
 
-    """ 
-        Parametros:
-                    producto (list): Lista de nombres/códigos de productos.
-                    venta (list): Matriz con las ventas que corresponde a cada producto.
+    nombres_c = copy.deepcopy(nombres)
+    calificaciones_c = copy.deepcopy(calificaciones)
 
-        Funcion: Busca un valor de venta dentro de la matriz 
-        y muestra en la tabla solo los valores que coinciden,
-        los demas valores son representados con "--".
-        
-    """
+    lista_promedio = promediar_notas(nombres_c, calificaciones_c)
 
-    monto = validar_int ("monto", 0, 1000)
+    for i in range (len(lista_promedio)-1):
 
-    print ("Producto # | T1 | T2 | T3 |")
-    print ("--------------------------")
+        for j in range (i+1, len(lista_promedio)):
 
-    for i in range (len(venta)):
+            if lista_promedio [i] <  lista_promedio [j]:
+                auxiliar_listas (lista_promedio,i,j)
+                auxiliar_listas (nombres_c,i,j)
+                auxiliar_listas (calificaciones_c,i,j)
+    
+    print ("Estudiantes ordenados por promedio:")
+    for i in range (len(nombres)):
+        print (f"{nombres_c[i]}: {lista_promedio[i]}")
 
-        print (f"Producto {producto [i]} |", end = "")
+#---------------- Buscar cadena ----------------
 
-        for j in range (len(venta[i])):
+def buscar_cadena (valor:str, lista:list)->list:
 
-            if venta [i][j] == monto:
-                print (f" {venta [i][j]} | ", end = "") 
+    cadena = solicitar_str (valor)
 
+    lista_cadena = []
+    encontrado = "n"
+
+    for i in range (len(lista)):
+            if lista [i] == cadena:
+                lista_cadena.append (i)
+                encontrado = "s"
+
+    while encontrado == "n":    
+        if len(lista_cadena) == 0:
+            respuesta = validar_str ("No hay valor que coincida con el ingresado. Ingrese si quiere buscar otro valor", "s","n")
+            if respuesta == "s":
+                lista_cadena = buscar_cadena (valor, lista)
             else:
-                print (f" -- |", end = "") 
+                print ("No se buscara un nuevo valor. La lista devuelta esta vacia.")
+            encontrado = "s"
 
-        print ("\n")
+    return lista_cadena
 
-#----------------VALIDACIONES----------------
+def buscar_estudiante (nombres: list, calificaciones: list):
+
+    list_posicion = buscar_cadena ("el nombre a buscar", nombres)
+
+    for i in range (len(list_posicion)):
+            print (f"Notas de {nombres[list_posicion[i]]}: {calificaciones[list_posicion[i]]}")
+
+#---------------- Buscar monto ----------------
+
+def buscar_int (valor:str, lista:list)->list:
+
+    entero = solicitar_int (valor)
+
+    lista_entero = []
+    encontrado = "n"
+
+    for i in range (len(lista)):
+            for j in range (len(lista[i])):
+                if lista [i][j] == entero:
+                    lista_entero.append ([i,j])
+                    encontrado = "s"
+
+    while encontrado == "n":    
+        if len(lista_entero) == 0:
+            respuesta = validar_str ("No hay valor que coincida con el ingresado. Ingrese si quiere buscar otro valor", "s","n")
+            if respuesta == "s":
+                lista_entero = buscar_int (valor, lista)
+            else:
+                print ("No se buscara un nuevo valor. La lista devuelta esta vacia.")
+            encontrado = "s"
+
+    return lista_entero
+
+def buscar_nota (nombres: list, calificaciones: list):
+
+    materias = ["Matematica", "Historia", "Biologia"]
+
+    list_posicion = buscar_int ("Ingrese la nota a buscar", calificaciones)
+
+    for i in range (len(list_posicion)):
+        
+        fila = list_posicion[i][0]  # Índice del estudiante
+        columna = list_posicion[i][1]  # Índice de la materia
+        nota_encontrada = calificaciones[fila][columna]  # Obtener la nota específica
+        
+        print (f"Nota encontrada: {nota_encontrada} -> Estudiante: {nombres[fila]}, Materia = {materias[columna]}")
