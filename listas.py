@@ -1,6 +1,6 @@
 from biblioteca_funcioness import *
 
-# Lista de estudiantes (índice i)
+# Lista de estudiantes 
 estudiantes = ["Ana", "Bruno", "Carla", "Diego"]
 
 # Matriz de calificaciones por estudiante [matemática, historia, biología]
@@ -15,6 +15,7 @@ lista_opciones = [  "Mostrar la lista de estudiantes y la matriz de calificacion
   "Ordenar a los estudiantes de mayor a menor según su promedio general.", 
   "Buscar un estudiante por nombre y mostrar sus calificaciones. ",
   "Buscar una calificación en la matriz y mostrar a qué estudiante y materia pertenece." ]
+
 lista_fun = [mostrar_listas, ordenar_lista_segun_promedio, buscar_estudiante,buscar_nota]
-datos = [estudiantes, calificaciones]
+
 

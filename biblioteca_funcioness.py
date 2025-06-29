@@ -62,7 +62,7 @@ def manejar_menu (lista_opciones:list, lista_fun:list, nombre:list, notas:list):
 
         lista_fun [opcion](nombre, notas)
 
-        repetir = validar_str ("\nsi quiere solicitar otra opcion", "s", "n")
+        repetir = validar_str ("\nIngrese si quiere solicitar otra opcion", "s", "n")
     
     print ("\nFin del programa.")
     
