@@ -39,36 +39,10 @@ def solicitar_str (nombre_valor: str) -> str:
     '''Solicita al usuario el ingreso de una cadena y la retorna'''
     cadena = str (input (f"Ingresar {nombre_valor}: "))
     return cadena
-
-#---------------- MENU ----------------
-
-def manejar_menu (lista_opciones:list, lista_fun:list, nombre:list, notas:list):
-
-    primero = 0
-    ultimo = len(lista_opciones)-1
     
-    repetir = "s"
+#---------------- Mostrar elementos ----------------
 
-    while repetir == "s":
-
-        print ("\nMenu de opciones\n")
-        
-        for i in range(len(lista_opciones)):
-            print (f"{i}. {lista_opciones[i]}")
-        
-        print (" ")
-        opcion = validar_int("opcion",primero,ultimo)
-        print (" ")
-
-        lista_fun [opcion](nombre, notas)
-
-        repetir = validar_str ("\nIngrese si quiere solicitar otra opcion", "s", "n")
-    
-    print ("\nFin del programa.")
-    
-#---------------- Mostrar elemntos ----------------
-
-def mostrar_listas (nombres:list, calificaciones:list):
+def mostrar_estudiantes (nombres:list, calificaciones:list):
 
     print ("Estudiantes y calificaciones:")
 
@@ -120,7 +94,7 @@ def ordenar_lista_segun_promedio (nombres:list, calificaciones:list):
                 auxiliar_listas (calificaciones_c,i,j)
     
     print ("Estudiantes ordenados por promedio:")
-    for i in range (len(nombres)):
+    for i in range (len(nombres_c)):
         print (f"{nombres_c[i]}: {lista_promedio[i]}")
 
 #---------------- Buscar cadena ----------------
@@ -130,21 +104,20 @@ def buscar_cadena (valor:str, lista:list)->list:
     cadena = solicitar_str (valor)
 
     lista_cadena = []
-    encontrado = "n"
+    encontrado = False
 
     for i in range (len(lista)):
             if lista [i] == cadena:
                 lista_cadena.append (i)
-                encontrado = "s"
+                encontrado = True
 
-    while encontrado == "n":    
-        if len(lista_cadena) == 0:
-            respuesta = validar_str ("No hay valor que coincida con el ingresado. Ingrese si quiere buscar otro valor", "s","n")
-            if respuesta == "s":
-                lista_cadena = buscar_cadena (valor, lista)
-            else:
-                print ("No se buscara un nuevo valor. La lista devuelta esta vacia.")
-            encontrado = "s"
+    while encontrado == False:    
+        respuesta = validar_str ("No hay valor que coincida con el ingresado. Ingrese si quiere buscar otro valor", "s","n")
+        if respuesta == "s":
+            lista_cadena = buscar_cadena (valor, lista)
+        else:
+            print ("No se buscara un nuevo valor. La lista devuelta esta vacia.")
+        encontrado = True
 
     return lista_cadena
 
@@ -162,22 +135,21 @@ def buscar_int (valor:str, lista:list)->list:
     entero = solicitar_int (valor)
 
     lista_entero = []
-    encontrado = "n"
+    encontrado = False
 
     for i in range (len(lista)):
             for j in range (len(lista[i])):
                 if lista [i][j] == entero:
                     lista_entero.append ([i,j])
-                    encontrado = "s"
+                    encontrado = True
 
-    while encontrado == "n":    
-        if len(lista_entero) == 0:
+    while encontrado == False:    
             respuesta = validar_str ("No hay valor que coincida con el ingresado. Ingrese si quiere buscar otro valor", "s","n")
             if respuesta == "s":
                 lista_entero = buscar_int (valor, lista)
             else:
                 print ("No se buscara un nuevo valor. La lista devuelta esta vacia.")
-            encontrado = "s"
+            encontrado = True
 
     return lista_entero
 

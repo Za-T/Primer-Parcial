@@ -16,6 +16,6 @@ lista_opciones = [  "Mostrar la lista de estudiantes y la matriz de calificacion
   "Buscar un estudiante por nombre y mostrar sus calificaciones. ",
   "Buscar una calificación en la matriz y mostrar a qué estudiante y materia pertenece." ]
 
-lista_fun = [mostrar_listas, ordenar_lista_segun_promedio, buscar_estudiante,buscar_nota]
+lista_fun = [mostrar_estudiantes, ordenar_lista_segun_promedio, buscar_estudiante, buscar_nota]
 
 
