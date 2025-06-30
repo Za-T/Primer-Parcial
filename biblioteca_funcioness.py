@@ -47,11 +47,21 @@ def mostrar_estudiantes (nombres:list, calificaciones:list):
     print ("Estudiantes y calificaciones:")
 
     for i in range (len(nombres)):
-       print (f"{nombres [i]}: {calificaciones [i]}")
+       
+        print (f"{nombres [i]}: ", end= "")
+       
+        for j in range (len (calificaciones[i])):
+            
+            if j == (len(calificaciones[i])-1):
+                print (f"{calificaciones [i][j]}", end= "")
+            else:
+                print (f"{calificaciones [i][j]}", end= ", ")
+        
+        print (" ")
 
 #---------------- Ordenar promedio ----------------
 
-def promediar_notas (nombres, calificaciones) -> list:
+def promediar_notas (nombres:list, calificaciones:list) -> list:
 
     lista_promedio = []
 
@@ -111,7 +121,7 @@ def buscar_cadena (valor:str, lista:list)->list:
                 lista_cadena.append (i)
                 encontrado = True
 
-    while encontrado == False:    
+    if encontrado == False:    
         respuesta = validar_str ("No hay valor que coincida con el ingresado. Ingrese si quiere buscar otro valor", "s","n")
         if respuesta == "s":
             lista_cadena = buscar_cadena (valor, lista)
@@ -126,7 +136,11 @@ def buscar_estudiante (nombres: list, calificaciones: list):
     list_posicion = buscar_cadena ("el nombre a buscar", nombres)
 
     for i in range (len(list_posicion)):
-            print (f"Notas de {nombres[list_posicion[i]]}: {calificaciones[list_posicion[i]]}")
+
+        nombre_encontrado = nombres[list_posicion[i]]
+        notas_correspondientes =  calificaciones[list_posicion[i]]
+
+        print (f"Notas de {nombre_encontrado}: {notas_correspondientes}")
 
 #---------------- Buscar monto ----------------
 
@@ -143,7 +157,7 @@ def buscar_int (valor:str, lista:list)->list:
                     lista_entero.append ([i,j])
                     encontrado = True
 
-    while encontrado == False:    
+    if encontrado == False:    
             respuesta = validar_str ("No hay valor que coincida con el ingresado. Ingrese si quiere buscar otro valor", "s","n")
             if respuesta == "s":
                 lista_entero = buscar_int (valor, lista)
