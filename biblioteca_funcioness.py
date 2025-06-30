@@ -1,48 +1,85 @@
 import copy
 #----------------VALIDACIONES----------------
 
-def validar_int (valor: str, desde: int, hasta: int) -> int:
+def validar_int (texto: str, minimo: int, maximo: int) -> int:
 
     '''Validar que un numero, indicado por el usuario, 
-    se encuentre en cierto rango'''
+    se encuentre en cierto rango
+    
+        Parametros:
+        texto: texto que se muestra para indicarle al usuario que debe ingresar un valor.
+        minimo: indica el valor minimo que se puede introducir.
+        maximo: indica el valor maximo que se puede introducir.
 
-    entero = int (input (f"Ingrese {valor} en este rango ({desde} - {hasta}): "))
+        Retorno:
+        Retorna el entero ingresado por el usuario.
+        '''
 
-    while entero < desde or entero > hasta:
-        entero = int (input (f"Error, valor invalido. Ingrese un nuevo valor en este rango ({desde} - {hasta}): "))
+    entero = int (input (f"{texto} en este rango ({minimo} - {maximo}): "))
+
+    while entero < minimo or entero > maximo:
+        entero = int (input (f"Error, valor invalido. Ingrese un nuevo valor en este rango ({minimo} - {maximo}): "))
 
     return entero
 
 def solicitar_int (nombre_valor: str) -> int:
 
-    ''' Solicita al usuario el ingreso de un número entero y lo retorna'''
+    ''' Solicita al usuario el ingreso de un número entero y lo retorna
+
+        Parametro:
+            nombre_valor: el nombre del valor a ingresar
+        Retorno:
+            Retorna el entero ingresado por el usuario'''
+    
     entero = int(input (f"{nombre_valor}: "))
     return entero
 
-def validar_str (valor: str, op1: str, op2: str, op3: str = None) -> str:
+def validar_str (texto: str, op1: str, op2: str, op3: str = None) -> str:
 
-    '''Validar que la cadena de caracteres ingresada sea correcta'''
+    '''Validar que la cadena de caracteres ingresada este disponible entre 2 o 3 opciones.
+
+    Parametros:
+        texto: Texto que se muestra para indicarle al usuario que debe ingresar un valor. 
+        op1: Opcion 1 a elegir
+        op2: Opcion 2 a elegir,
+        op3: Opcion 3 a elegir. Se asume que esta opcion esta vacia, 
+        si en los parametros reales se ingresa un valor, entonces ahi se muestra esta opcion.
+
+    Retorno:
+        Retorna la respuesta elegida dentro de las opciones validas.'''
 
     if op3 != None:
-        cadena = input (f"{valor} ({op1},{op2},{op3}): ")
+        cadena = input (f"{texto} ({op1},{op2},{op3}): ")
         while cadena != op1 and cadena != op2 and cadena != op3:
             cadena = (input (f"Error, valor ingresado no valido. Ingrese un nuevo valor ({op1},{op2},{op3}): "))
 
     else:
-        cadena = input (f"{valor} ({op1},{op2}): ")
+        cadena = input (f"{texto} ({op1},{op2}): ")
         while cadena != op1 and cadena != op2:
             cadena = (input (f"Error, valor ingresado no valido. Ingrese un nuevo valor ({op1},{op2}): "))
     
     return cadena
 
 def solicitar_str (nombre_valor: str) -> str:
-    '''Solicita al usuario el ingreso de una cadena y la retorna'''
+    
+    '''Solicita al usuario el ingreso de una cadena y la retorna.
+        Parametro:
+            nombre_valor: el nombre del valor a ingresar
+        Retorno:
+            Retorna la cadena ingresada por el usuario'''
+    
     cadena = str (input (f"Ingresar {nombre_valor}: "))
     return cadena
     
 #---------------- Mostrar elementos ----------------
 
 def mostrar_estudiantes (nombres:list, calificaciones:list):
+    
+    '''La funcion printea el nombre de los estudiantes, y a su lado sus notas correspondientes.
+        
+        Parametros:
+            nombres: lista de nombres que se van a imprimir.
+            calificaciones: calificaciones que se van a imprimir.'''
 
     print ("Estudiantes y calificaciones:")
 
@@ -61,38 +98,60 @@ def mostrar_estudiantes (nombres:list, calificaciones:list):
 
 #---------------- Ordenar promedio ----------------
 
-def promediar_notas (nombres:list, calificaciones:list) -> list:
+def promediar_matriz (matriz:list) -> list:
+
+    '''La funcion recibe una matriz, y promedia los elementos de cada lista anidada.
+        
+        Parametros:
+            matriz: recibe la matriz que va a ser promediada.
+        Retorno: 
+            Retorna una lista que contiene el promedio de cada fila de la matriz'''
 
     lista_promedio = []
 
-    for i in range (len(nombres)):
+    for i in range (len(matriz)):
         
-        suma_notas = 0
+        sumar_item = 0
 
-        for j in range (len(calificaciones [i])):
+        for j in range (len(matriz [i])):
 
-            suma_notas += calificaciones [i][j]
-            divisor = len(calificaciones [i])
+            sumar_item += matriz [i][j]
+            divisor = len(matriz [i])
 
-        promedio = suma_notas / divisor
+        promedio = sumar_item / divisor
 
         lista_promedio.append(promedio)
     
     return lista_promedio
 
 def auxiliar_listas (lista:list,i,j):
+
+    '''Intercambia dos elementos de una lista en las posiciones indicadas.
+        
+        Parametros:
+            lista: lista en la cual se van a intercambiar los elementos.
+            i: indice del primer elemento a intercambiar.
+            j: indice del segundo elemento a intercambiar.'''
+
     aux = lista [i]
     lista [i] = lista [j]
     lista [j] = aux
 
 def ordenar_lista_segun_promedio (nombres:list, calificaciones:list):
 
+    '''Ordena las listas de nombres y calificaciones segun el promedio de las calificaciones,
+    de mayor a menor, y muestra el resultado.
+        
+        Parametros:
+            nombres: lista de nombres de estudiantes.
+            calificaciones: matriz de calificaciones de cada estudiante.'''
+
     print ("Ordenando por promedio general...")
 
     nombres_c = copy.deepcopy(nombres)
     calificaciones_c = copy.deepcopy(calificaciones)
 
-    lista_promedio = promediar_notas(nombres_c, calificaciones_c)
+    lista_promedio = promediar_matriz(calificaciones_c)
 
     for i in range (len(lista_promedio)-1):
 
@@ -110,6 +169,14 @@ def ordenar_lista_segun_promedio (nombres:list, calificaciones:list):
 #---------------- Buscar cadena ----------------
 
 def buscar_cadena (valor:str, lista:list)->list:
+
+    '''Busca una cadena especifica en una lista y retorna las posiciones donde se encuentra.
+        
+        Parametros:
+            valor: descripcion del valor que se solicita al usuario.
+            lista: lista en la cual se va a buscar la cadena.
+        Retorno:
+            Retorna una lista con los indices donde se encontro la cadena.'''
 
     cadena = solicitar_str (valor)
 
@@ -133,6 +200,12 @@ def buscar_cadena (valor:str, lista:list)->list:
 
 def buscar_estudiante (nombres: list, calificaciones: list):
 
+    '''Busca un estudiante por nombre y muestra sus calificaciones correspondientes.
+        
+        Parametros:
+            nombres: lista de nombres de estudiantes.
+            calificaciones: matriz de calificaciones de cada estudiante.'''
+
     list_posicion = buscar_cadena ("el nombre a buscar", nombres)
 
     for i in range (len(list_posicion)):
@@ -145,6 +218,14 @@ def buscar_estudiante (nombres: list, calificaciones: list):
 #---------------- Buscar monto ----------------
 
 def buscar_int (valor:str, lista:list)->list:
+
+    '''Busca un entero especifico en una matriz y retorna las posiciones donde se encuentra.
+        
+        Parametros:
+            valor: descripcion del valor que se solicita al usuario.
+            lista: matriz en la cual se va a buscar el entero.
+        Retorno:
+            Retorna una lista con las coordenadas [fila, columna] donde se encontro el entero.'''
 
     entero = solicitar_int (valor)
 
@@ -168,6 +249,13 @@ def buscar_int (valor:str, lista:list)->list:
     return lista_entero
 
 def buscar_nota (nombres: list, calificaciones: list):
+
+    '''Busca una nota especifica en la matriz de calificaciones y muestra 
+    el estudiante y materia correspondiente.
+        
+        Parametros:
+            nombres: lista de nombres de estudiantes.
+            calificaciones: matriz de calificaciones de cada estudiante.'''
 
     materias = ["Matematica", "Historia", "Biologia"]
 
