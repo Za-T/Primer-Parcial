@@ -217,7 +217,7 @@ def buscar_estudiante (nombres: list, calificaciones: list):
 
 #---------------- Buscar entero ----------------
 
-def buscar_int (valor:str, lista:list)->list:
+def buscar_int (texto:str, lista:list)->list:
 
     '''Busca un entero especifico en una matriz y retorna las posiciones donde se encuentra.
         
@@ -227,7 +227,7 @@ def buscar_int (valor:str, lista:list)->list:
         Retorno:
             Retorna una lista con las coordenadas [fila, columna] donde se encontro el entero.'''
 
-    entero = solicitar_int (valor)
+    entero = solicitar_int (texto)
 
     lista_entero = []
     encontrado = False
@@ -241,7 +241,7 @@ def buscar_int (valor:str, lista:list)->list:
     if encontrado == False:    
             respuesta = validar_str ("No hay valor que coincida con el ingresado. Ingrese si quiere buscar otro valor", "s","n")
             if respuesta == "s":
-                lista_entero = buscar_int (valor, lista)
+                lista_entero = buscar_int (texto, lista)
             else:
                 print ("No se buscara un nuevo valor. La lista devuelta esta vacia.")
             encontrado = True
