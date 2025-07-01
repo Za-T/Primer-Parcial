@@ -1,9 +1,10 @@
-from biblioteca_funcioness import *
+from biblioteca_funciones import *
 
 # Lista de estudiantes 
 estudiantes = ["Ana", "Bruno", "Carla", "Diego"]
 
-# Matriz de calificaciones por estudiante [matemática, historia, biología]
+# Matriz de calificaciones por estudiante 
+#[matemática, historia, biología]
 calificaciones = [
     [9, 8, 10],    # Ana
     [6, 7, 8],     # Bruno

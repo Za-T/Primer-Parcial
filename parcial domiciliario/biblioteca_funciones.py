@@ -180,23 +180,23 @@ def buscar_cadena (valor:str, lista:list)->list:
 
     cadena = solicitar_str (valor)
 
-    lista_cadena = []
+    lista_posicion = []
     encontrado = False
 
     for i in range (len(lista)):
             if lista [i] == cadena:
-                lista_cadena.append (i)
+                lista_posicion.append (i)
                 encontrado = True
 
     if encontrado == False:    
         respuesta = validar_str ("No hay valor que coincida con el ingresado. Ingrese si quiere buscar otro valor", "s","n")
         if respuesta == "s":
-            lista_cadena = buscar_cadena (valor, lista)
+            lista_posicion = buscar_cadena (valor, lista)
         else:
             print ("No se buscara un nuevo valor. La lista devuelta esta vacia.")
         encontrado = True
 
-    return lista_cadena
+    return lista_posicion
 
 def buscar_estudiante (nombres: list, calificaciones: list):
 
@@ -215,7 +215,7 @@ def buscar_estudiante (nombres: list, calificaciones: list):
 
         print (f"Notas de {nombre_encontrado}: {notas_correspondientes}")
 
-#---------------- Buscar monto ----------------
+#---------------- Buscar entero ----------------
 
 def buscar_int (valor:str, lista:list)->list:
 
@@ -263,8 +263,8 @@ def buscar_nota (nombres: list, calificaciones: list):
 
     for i in range (len(list_posicion)):
         
-        fila = list_posicion[i][0]  # Índice del estudiante
-        columna = list_posicion[i][1]  # Índice de la materia
-        nota_encontrada = calificaciones[fila][columna]  # Obtener la nota específica
+        fila = list_posicion[i][0] 
+        columna = list_posicion[i][1] 
+        nota_encontrada = calificaciones[fila][columna] 
         
         print (f"Nota encontrada: {nota_encontrada} -> Estudiante: {nombres[fila]}, Materia = {materias[columna]}")

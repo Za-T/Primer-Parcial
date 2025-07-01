@@ -1,5 +1,5 @@
 from listas import *
-from biblioteca_funcioness import *
+from biblioteca_funciones import *
 
 def manejar_menu (lista_opciones:list, lista_fun:list, lista1:list, lista2:list):
 
