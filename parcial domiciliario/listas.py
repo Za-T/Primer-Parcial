@@ -12,7 +12,7 @@ calificaciones = [
     [7, 6, 5]      # Diego
 ]
 
-lista_opciones = [  "Mostrar la lista de estudiantes y la matriz de calificaciones.", 
+lista_opciones = ["Mostrar la lista de estudiantes y la matriz de calificaciones.", 
   "Ordenar a los estudiantes de mayor a menor según su promedio general.", 
   "Buscar un estudiante por nombre y mostrar sus calificaciones. ",
   "Buscar una calificación en la matriz y mostrar a qué estudiante y materia pertenece." ]
