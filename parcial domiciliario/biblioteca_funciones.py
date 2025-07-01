@@ -94,7 +94,7 @@ def mostrar_estudiantes (nombres:list, calificaciones:list):
             else:
                 print (f"{calificaciones [i][j]}", end= ", ")
         
-        print (" ")
+        print ("")
 
 #---------------- Ordenar promedio ----------------
 
@@ -168,7 +168,7 @@ def ordenar_lista_segun_promedio (nombres:list, calificaciones:list):
 
 #---------------- Buscar cadena ----------------
 
-def buscar_cadena (valor:str, lista:list)->list:
+def buscar_cadena (texto:str, lista:list)->list:
 
     '''Busca una cadena especifica en una lista y retorna las posiciones donde se encuentra.
         
@@ -178,7 +178,7 @@ def buscar_cadena (valor:str, lista:list)->list:
         Retorno:
             Retorna una lista con los indices donde se encontro la cadena.'''
 
-    cadena = solicitar_str (valor)
+    cadena = solicitar_str (texto)
 
     lista_posicion = []
     encontrado = False
@@ -191,7 +191,7 @@ def buscar_cadena (valor:str, lista:list)->list:
     if encontrado == False:    
         respuesta = validar_str ("No hay valor que coincida con el ingresado. Ingrese si quiere buscar otro valor", "s","n")
         if respuesta == "s":
-            lista_posicion = buscar_cadena (valor, lista)
+            lista_posicion = buscar_cadena (texto, lista)
         else:
             print ("No se buscara un nuevo valor. La lista devuelta esta vacia.")
         encontrado = True
